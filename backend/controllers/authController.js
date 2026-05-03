@@ -32,7 +32,7 @@ export const registerUser = async (req, res) => {
       isVerified: false,
     });
 
-    const verificationLink = `http://localhost:5000/api/auth/verify/${verificationToken}`;
+    const verificationLink = `${process.env.BASE_URL}/api/auth/verify/${verificationToken}`;
 
     await sendEmail(
       email,
