@@ -1,13 +1,15 @@
 import nodemailer from "nodemailer";
 
 const sendEmail = async (to, subject, html) => {
+  console.log("📧 sendEmail STARTED"); // ✅ ADD THIS
+
   try {
-    console.log("📨 Attempting to send email to:", to);
-    console.log("EMAIL_USER:", process.env.EMAIL_USER);
-    console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
+    console.log("📧 Sending to:", to); // ✅ ADD THIS
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -21,10 +23,11 @@ const sendEmail = async (to, subject, html) => {
       html,
     });
 
-    console.log("✅ Email sent:", info.response);
+    console.log("✅ Email sent successfully");
+    console.log("Response:", info.response);  
 
   } catch (error) {
-    console.error("❌ Email error:", error);
+    console.error("❌ Email error:", error); 
   }
 };
 

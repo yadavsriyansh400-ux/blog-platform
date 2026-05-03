@@ -34,11 +34,11 @@ export const registerUser = async (req, res) => {
 
     const verificationLink = `${process.env.BASE_URL}/api/auth/verify/${verificationToken}`;
 
-    await sendEmail(
+    sendEmail(
       email,
       "Verify Your Email",
       `<h3>Click below to verify your email:</h3>
-       <a href="${verificationLink}">${verificationLink}</a>`
+      <a href="${verificationLink}">${verificationLink}</a>`
     );
 
     res.status(201).json({
